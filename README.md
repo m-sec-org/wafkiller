@@ -1,8 +1,6 @@
 # WAF Killer
 `WAF Killer` 是一个使用 Go 编写的桌面工具，主要用于采集疑似存在 WAF 的站点、做 WAF 指纹识别、管理规则，并对规则验证结果进行聚类和统计展示。
 
-> 说明：为避免主仓库体积过大，README 配套截图与演示素材托管在独立的 `readme-assets` 分支，不随 `main` 一起分发。
-
 ## 使用说明
 第一次启动时，默认没有WAF池数据，需要自动化灌入数据便于测试。需要先配置fofa key，然后点击一键执行，这里可以将 ✖️ 后面的数字改大一些，推荐使用8-10，这样可以连续多轮从Fofa 拉去数据灌入WAF池，一键执行会自动生成采样关键词（每轮随机产生），然后自动识别站点是否存在WAF，自动对WAF拦截页面生成浏览器快照并进行聚类。聚类后我们可以手工根据经验为WAF产品厂商添加标签，便于后续测试的时候快速找出针对某厂商WAF的通用绕过规则。
 <video src="https://github.com/m-sec-org/wafkiller/blob/readme-assets/assets/Main.mp4?raw=1" controls muted playsinline width="100%"></video>
