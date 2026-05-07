@@ -5,7 +5,9 @@
 
 ## 使用说明
 第一次启动时，默认没有WAF池数据，需要自动化灌入数据便于测试。需要先配置fofa key，然后点击一键执行，这里可以将 ✖️ 后面的数字改大一些，推荐使用8-10，这样可以连续多轮从Fofa 拉去数据灌入WAF池，一键执行会自动生成采样关键词（每轮随机产生），然后自动识别站点是否存在WAF，自动对WAF拦截页面生成浏览器快照并进行聚类。聚类后我们可以手工根据经验为WAF产品厂商添加标签，便于后续测试的时候快速找出针对某厂商WAF的通用绕过规则。
-![Main](https://github.com/m-sec-org/wafkiller/blob/readme-assets/assets/Main.gif?raw=1)
+<video src="https://github.com/m-sec-org/wafkiller/blob/readme-assets/assets/Main.mp4?raw=1" controls muted playsinline width="100%"></video>
+
+[点击观看演示视频 Main.mp4](https://github.com/m-sec-org/wafkiller/blob/readme-assets/assets/Main.mp4?raw=1)
 
 扫描后，可根据经验对新增的聚类分组打标签，标记WAF类型，这些标记会固化到规则便于下次直接匹配。可根据经验编写绕过规则，也可以用内置AI模型直接生成规则，目前支持GPT-Codex和智谱-GLM两种模型。以最近热度较高的Java幽灵比特绕过为例：
 ![110529_766](https://github.com/m-sec-org/wafkiller/blob/readme-assets/assets/28a843953e4955bd650b89bb91c4f12a.jpg?raw=1)
