@@ -1,0 +1,12 @@
+# @name: GET ID基线探测
+# @tags: get,id,baseline,bypass
+# @color: green
+# @validate: baseline_similarity
+# @threshold: 0.70
+# @intent: baseline_get_param
+# @intent.param: id
+# @intent.value: 1
+# @note: 直接请求 GET /?id=1，作为基线型验证规则，并优先与本轮预探测得到的最新基线页比较。
+GET /?id=1 HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}

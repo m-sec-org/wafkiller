@@ -1,0 +1,1708 @@
+# Auto-generated from wafdet Python rules.
+# Source: ./wafdet/*.py
+- name: 'aeSecure (aeSecure)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'aesecure-code'
+          pattern: '.+?'
+        - type: content
+          pattern: 'aesecure_denied\.png'
+- name: 'AireeCDN (Airee)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'Airee'
+        - type: header
+          key: 'x-cache'
+          pattern: '(\w+\.)?airee\.cloud'
+        - type: content
+          pattern: 'airee\.cloud'
+- name: 'Airlock (Phion/Ergon)'
+  rule:
+    - logic: any
+      conditions:
+        - type: cookie
+          pattern: '^al[_-]?(sess|lb)='
+        - type: content
+          pattern: 'server detected a syntax error in your request'
+- name: 'Alert Logic (Alert Logic)'
+  rule:
+    - logic: all
+      conditions:
+        - type: content
+          pattern: '<(title|h\d{1})>requested url cannot be found'
+        - type: content
+          pattern: 'we are sorry.{0,10}?but the page you are looking for cannot be found'
+        - type: content
+          pattern: 'back to previous page'
+        - type: content
+          pattern: 'proceed to homepage'
+        - type: content
+          pattern: 'reference id'
+- name: 'AliYunDun (Alibaba Cloud Computing)'
+  rule:
+    - logic: all
+      conditions:
+        - type: content
+          pattern: 'error(s)?\.aliyun(dun)?\.(com|net)?'
+        - type: cookie
+          pattern: '^aliyungf_tc='
+        - type: content
+          pattern: 'cdn\.aliyun(cs)?\.com'
+        - type: status
+          status: 405
+- name: 'Anquanbao (Anquanbao)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'x-powered-by-anquanbao'
+          pattern: '.+?'
+        - type: content
+          pattern: 'aqb_cc/error/'
+- name: 'AnYu (AnYu Technologies)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'anyu.{0,10}?the green channel'
+        - type: content
+          pattern: 'your access has been intercepted by anyu'
+- name: 'Approach (Approach)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'approach.{0,10}?web application (firewall|filtering)'
+        - type: content
+          pattern: 'approach.{0,10}?infrastructure team'
+- name: 'Armor Defense (Armor)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'blocked by website protection from armor'
+        - type: content
+          pattern: 'please create an armor support ticket'
+- name: 'ArvanCloud (ArvanCloud)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'ArvanCloud'
+- name: 'ASPA Firewall (ASPA Engineering Co.)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'ASPA[\-_]?WAF'
+        - type: header
+          key: 'aspa-cache-status'
+          pattern: '.+?'
+- name: 'ASP.NET Generic (Microsoft)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'iis (\d+.)+?detailed error'
+        - type: content
+          pattern: 'potentially dangerous request querystring'
+        - type: content
+          pattern: 'application error from being viewed remotely (for security reasons)?'
+        - type: content
+          pattern: 'An application error occurred on the server'
+- name: 'Astra (Czar Securities)'
+  rule:
+    - logic: any
+      conditions:
+        - type: cookie
+          pattern: '^cz_astra_csrf_cookie'
+        - type: content
+          pattern: 'astrawebsecurity\.freshdesk\.com'
+        - type: content
+          pattern: 'www\.getastra\.com/assets/images'
+- name: 'AWS Elastic Load Balancer (Amazon)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'x-amz-id'
+          pattern: '.+?'
+        - type: header
+          key: 'x-amz-request-id'
+          pattern: '.+?'
+        - type: cookie
+          pattern: '^aws.?alb='
+        - type: header
+          key: 'server'
+          pattern: 'aws.?elb'
+- name: 'AzionCDN (AzionCDN)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'Azion([-_]CDN)?'
+- name: 'Yunjiasu (Baidu Cloud Computing)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'Yunjiasu(.+)?'
+- name: 'Barikode (Ethic Ninja)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: '<strong>barikode<.strong>'
+- name: 'Barracuda (Barracuda Networks)'
+  rule:
+    - logic: any
+      conditions:
+        - type: cookie
+          pattern: '^barra_counter_session='
+        - type: cookie
+          pattern: '^BNI__BARRACUDA_LB_COOKIE='
+        - type: cookie
+          pattern: '^BNI_persistence='
+        - type: cookie
+          pattern: '^BN[IE]S_.*?='
+        - type: content
+          pattern: 'Barracuda.Networks'
+- name: 'Bekchy (Faydata Technologies Inc.)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'Bekchy.{0,10}?Access Denied'
+        - type: content
+          pattern: 'bekchy\.com/report'
+- name: 'Beluga CDN (Beluga)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'Beluga'
+        - type: cookie
+          pattern: '^beluga_request_trail='
+- name: 'BinarySec (BinarySec)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'BinarySec'
+        - type: header
+          key: 'x-binarysec-via'
+          pattern: '.+'
+        - type: header
+          key: 'x-binarysec-nocache'
+          pattern: '.+'
+- name: 'BitNinja (BitNinja)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'Security check by BitNinja'
+        - type: content
+          pattern: 'Visitor anti-robot validation'
+- name: 'BlockDoS (BlockDoS)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'blockdos\.net'
+- name: 'Bluedon (Bluedon IST)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'BDWAF'
+        - type: content
+          pattern: 'bluedon web application firewall'
+- name: 'BulletProof Security Pro (AITpro Security)'
+  rule:
+    - logic: all
+      conditions:
+        - type: content
+          pattern: '\+?bpsMessage'
+        - type: content
+          pattern: '403 Forbidden Error Page'
+        - type: content
+          pattern: 'If you arrived here due to a search'
+- name: 'CacheFly CDN (CacheFly)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'bestcdn'
+          pattern: 'Cachefly'
+        - type: cookie
+          pattern: '^cfly_req.*='
+- name: 'CacheWall (Varnish)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'Varnish'
+        - type: header
+          key: 'x-varnish'
+          pattern: '.+'
+        - type: header
+          key: 'x-cachewall-action'
+          pattern: '.+?'
+        - type: header
+          key: 'x-cachewall-reason'
+          pattern: '.+?'
+        - type: content
+          pattern: 'security by cachewall'
+        - type: content
+          pattern: '403 naughty.{0,10}?not nice!'
+        - type: content
+          pattern: 'varnish cache server'
+- name: 'CdnNS Application Gateway (CdnNs/WdidcNet)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'cdnnswaf application gateway'
+- name: 'WP Cerber Security (Cerber Tech)'
+  rule:
+    - logic: all
+      conditions:
+        - type: content
+          pattern: 'your request looks suspicious or similar to automated'
+        - type: content
+          pattern: 'our server stopped processing your request'
+        - type: content
+          pattern: 'We.re sorry.{0,10}?you are not allowed to proceed'
+        - type: content
+          pattern: 'requests from spam posting software'
+        - type: content
+          pattern: '<title>403 Access Forbidden'
+- name: 'ChinaCache Load Balancer (ChinaCache)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'powered-by-chinacache'
+          pattern: '.+'
+- name: 'Chuang Yu Shield (Yunaq)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'www\.365cyd\.com'
+        - type: content
+          pattern: 'help\.365cyd\.com/cyd\-error\-help.html\?code=403'
+- name: 'ACE XML Gateway (Cisco)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'ACE XML Gateway'
+- name: 'Cloudbric (Penta Security)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: '<title>Cloudbric.{0,5}?ERROR!'
+        - type: content
+          pattern: 'Your request was blocked by Cloudbric'
+        - type: content
+          pattern: 'please contact Cloudbric Support'
+        - type: content
+          pattern: 'cloudbric\.zendesk\.com'
+        - type: content
+          pattern: 'Cloudbric Help Center'
+        - type: content
+          pattern: 'malformed request syntax.{0,4}?invalid request message framing.{0,4}?or deceptive request routing'
+- name: 'Cloudflare (Cloudflare Inc.)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'cloudflare'
+        - type: header
+          key: 'server'
+          pattern: 'cloudflare[-_]nginx'
+        - type: header
+          key: 'cf-ray'
+          pattern: '.+?'
+        - type: cookie
+          pattern: '__cfduid'
+- name: 'Cloudfloor (Cloudfloor DNS)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'CloudfloorDNS(.WAF)?'
+        - type: content
+          pattern: '<(title|h\d{1})>CloudfloorDNS.{0,6}?Web Application Firewall Error'
+        - type: content
+          pattern: 'www\.cloudfloordns\.com/contact'
+- name: 'Cloudfront (Amazon)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'Cloudfront'
+        - type: header
+          key: 'via'
+          pattern: '([0-9\.]+?)? \w+?\.cloudfront\.net \(Cloudfront\)'
+        - type: header
+          key: 'x-amz-cf-id'
+          pattern: '.+?'
+        - type: header
+          key: 'x-cache'
+          pattern: 'Error from Cloudfront'
+        - type: content
+          pattern: 'Generated by cloudfront \(CloudFront\)'
+- name: 'Cloud Protector (Rohde & Schwarz CyberSecurity)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'Cloud Protector.*?by Rohde.{3,8}?Schwarz Cybersecurity'
+        - type: content
+          pattern: '<a href=''https?:\/\/(?:www\.)?cloudprotector\.com\/''>R.{1,6}?S.Cloud Protector'
+- name: 'Comodo cWatch (Comodo CyberSecurity)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'Protected by COMODO WAF(.+)?'
+- name: 'CrawlProtect (Jean-Denis Brun)'
+  rule:
+    - logic: any
+      conditions:
+        - type: cookie
+          pattern: '^crawlprotecttag='
+        - type: content
+          pattern: '<title>crawlprotect'
+        - type: content
+          pattern: 'this site is protected by crawlprotect'
+- name: 'DDoS-GUARD (DDOS-GUARD CORP.)'
+  rule:
+    - logic: any
+      conditions:
+        - type: cookie
+          pattern: '^__ddg1.*?='
+        - type: cookie
+          pattern: '^__ddg2.*?='
+        - type: cookie
+          pattern: '^__ddgid.*?='
+        - type: cookie
+          pattern: '^__ddgmark.*?='
+        - type: header
+          key: 'server'
+          pattern: 'ddos-guard'
+- name: 'DenyALL (Rohde & Schwarz CyberSecurity)'
+  rule:
+    - logic: all
+      conditions:
+        - type: status
+          status: 200
+        - type: reason
+          pattern: 'Condition Intercepted'
+- name: 'Distil (Distil Networks)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'cdn\.distilnetworks\.com/images/anomaly\.detected\.png'
+        - type: content
+          pattern: 'distilCaptchaForm'
+        - type: content
+          pattern: 'distilCallbackGuard'
+- name: 'DOSarrest (DOSarrest Internet Security)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'x-dis-request-id'
+          pattern: '.+'
+        - type: header
+          key: 'server'
+          pattern: 'DOSarrest(.*)?'
+- name: 'DotDefender (Applicure Technologies)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'x-dotdefender-denied'
+          pattern: '.+?'
+        - type: content
+          pattern: 'dotdefender blocked your request'
+        - type: content
+          pattern: 'Applicure is the leading provider of web application security'
+- name: 'DynamicWeb Injection Check (DynamicWeb)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'x-403-status-by'
+          pattern: 'dw.inj.check'
+        - type: content
+          pattern: 'by dynamic check(.{0,10}?module)?'
+- name: 'Edgecast (Verizon Digital Media)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: '^ECD(.+)?'
+        - type: header
+          key: 'server'
+          pattern: '^ECS(.*)?'
+- name: 'Eisoo Cloud Firewall (Eisoo)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'EisooWAF(\-AZURE)?/?'
+        - type: content
+          pattern: '<link.{0,10}?href=\"/eisoo\-firewall\-block\.css'
+        - type: content
+          pattern: 'www\.eisoo\.com'
+        - type: content
+          pattern: '&copy; \d{4} Eisoo Inc'
+- name: 'Expression Engine (EllisLab)'
+  rule:
+    - logic: any
+      conditions:
+        - type: cookie
+          pattern: '^exp_track.+?='
+        - type: cookie
+          pattern: '^exp_last_.+?='
+        - type: content
+          pattern: 'invalid get data'
+- name: 'BIG-IP AP Manager (F5 Networks)'
+  rule:
+    - logic: all
+      conditions:
+        - type: cookie
+          pattern: '^LastMRH_Session'
+        - type: cookie
+          pattern: '^MRHSession'
+    - logic: all
+      conditions:
+        - type: cookie
+          pattern: '^MRHSession'
+        - type: header
+          key: 'server'
+          pattern: 'Big([-_])?IP'
+    - logic: any
+      conditions:
+        - type: cookie
+          pattern: '^F5_fullWT'
+        - type: cookie
+          pattern: '^F5_HT_shrinked'
+- name: 'BIG-IP AppSec Manager (F5 Networks)'
+  rule:
+    - logic: all
+      conditions:
+        - type: content
+          pattern: 'the requested url was rejected'
+        - type: content
+          pattern: 'please consult with your administrator'
+- name: 'BIG-IP Local Traffic Manager (F5 Networks)'
+  rule:
+    - logic: any
+      conditions:
+        - type: cookie
+          pattern: '^bigipserver'
+        - type: header
+          key: 'x-cnection'
+          pattern: 'close'
+- name: 'FirePass (F5 Networks)'
+  rule:
+    - logic: all
+      conditions:
+        - type: cookie
+          pattern: '^VHOST'
+        - type: header
+          key: 'location'
+          pattern: '\/my\.logon\.php3'
+    - logic: all
+      conditions:
+        - type: cookie
+          pattern: '^F5_fire.+?'
+        - type: cookie
+          pattern: '^F5_passid_shrinked'
+- name: 'Trafficshield (F5 Networks)'
+  rule:
+    - logic: any
+      conditions:
+        - type: cookie
+          pattern: '^ASINFO='
+        - type: header
+          key: 'server'
+          pattern: 'F5-TrafficShield'
+- name: 'Fastly (Fastly CDN)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'x-fastly-request-id'
+          pattern: '\w+'
+- name: 'FortiWeb (Fortinet)'
+  rule:
+    - logic: any
+      conditions:
+        - type: cookie
+          pattern: '^FORTIWAFSID='
+        - type: content
+          pattern: '.fgd_icon'
+    - logic: all
+      conditions:
+        - type: content
+          pattern: 'fgd_icon'
+        - type: content
+          pattern: 'web.page.blocked'
+        - type: content
+          pattern: 'url'
+        - type: content
+          pattern: 'attack.id'
+        - type: content
+          pattern: 'message.id'
+        - type: content
+          pattern: 'client.ip'
+- name: 'Azure Front Door (Microsoft)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'x-azure-ref'
+          pattern: '.+?'
+- name: 'GoDaddy Website Protection (GoDaddy)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'GoDaddy (security|website firewall)'
+- name: 'Greywizard (Grey Wizard)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'greywizard'
+        - type: content
+          pattern: '<(title|h\d{1})>Grey Wizard'
+        - type: content
+          pattern: 'contact the website owner or Grey Wizard'
+        - type: content
+          pattern: 'We.ve detected attempted attack or non standard traffic from your ip address'
+- name: 'Huawei Cloud Firewall (Huawei)'
+  rule:
+    - logic: any
+      conditions:
+        - type: cookie
+          pattern: '^HWWAFSESID='
+        - type: header
+          key: 'server'
+          pattern: 'HuaweiCloudWAF'
+        - type: content
+          pattern: 'hwclouds\.com'
+        - type: content
+          pattern: 'hws_security@'
+- name: 'HyperGuard (Art of Defense)'
+  rule:
+    - logic: any
+      conditions:
+        - type: cookie
+          pattern: '^WODSESSION='
+- name: 'DataPower (IBM)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'x-backside-transport'
+          pattern: '(OK|FAIL)'
+- name: 'Imunify360 (CloudLinux)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'imunify360.{0,10}?'
+        - type: content
+          pattern: 'protected.by.{0,10}?imunify360'
+        - type: content
+          pattern: 'powered.by.{0,10}?imunify360'
+        - type: content
+          pattern: 'imunify360.preloader'
+- name: 'Incapsula (Imperva Inc.)'
+  rule:
+    - logic: any
+      conditions:
+        - type: cookie
+          pattern: '^incap_ses.*?='
+        - type: cookie
+          pattern: '^visid_incap.*?='
+        - type: content
+          pattern: 'incapsula incident id'
+        - type: content
+          pattern: 'powered by incapsula'
+        - type: content
+          pattern: '/_Incapsula_Resource'
+- name: 'IndusGuard (Indusface)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'IF_WAF'
+        - type: content
+          pattern: 'This website is secured against online attacks. Your request was blocked'
+- name: 'Instart DX (Instart Logic)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'x-instart-request-id'
+          pattern: '.+'
+        - type: header
+          key: 'x-instart-cache'
+          pattern: '.+'
+        - type: header
+          key: 'x-instart-wl'
+          pattern: '.+'
+    - logic: all
+      conditions:
+        - type: content
+          pattern: 'the requested url was rejected'
+        - type: content
+          pattern: 'please consult with your administrator'
+        - type: content
+          pattern: 'your support id is'
+- name: 'ISA Server (Microsoft)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'The.{0,10}?(isa.)?server.{0,10}?denied the specified uniform resource locator \(url\)'
+- name: 'Janusec Application Gateway (Janusec)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'janusec application gateway'
+- name: 'Jiasule (Jiasule)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'jiasule\-waf'
+        - type: cookie
+          pattern: '^jsl_tracking(.+)?='
+        - type: cookie
+          pattern: '__jsluid='
+        - type: content
+          pattern: 'notice\-jiasule'
+        - type: content
+          pattern: 'static\.jiasule\.com'
+- name: 'KeyCDN (KeyCDN)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'KeyCDN'
+- name: 'KS-WAF (KnownSec)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: '/ks[-_]waf[-_]error\.png'
+- name: 'Kona SiteDefender (Akamai)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'AkamaiGHost'
+- name: 'LimeLight CDN (LimeLight)'
+  rule:
+    - logic: any
+      conditions:
+        - type: cookie
+          pattern: '^limelight'
+        - type: cookie
+          pattern: '^l[mg]_sessid='
+- name: 'LiteSpeed (LiteSpeed Technologies)'
+  rule:
+    - logic: all
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'LiteSpeed'
+        - type: status
+          status: 403
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'Proudly powered by litespeed web server'
+        - type: content
+          pattern: 'www\.litespeedtech\.com/error\-page'
+- name: 'Malcare (Inactiv)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'firewall.{0,15}?powered.by.{0,15}?malcare.{0,15}?pro'
+        - type: content
+          pattern: 'blocked because of malicious activities'
+- name: 'MaxCDN (MaxCDN)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'x-cdn'
+          pattern: 'maxcdn'
+- name: 'Mission Control Shield (Mission Control)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'Mission Control Application Shield'
+- name: 'ModSecurity (SpiderLabs)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: '(mod_security|Mod_Security|NOYB)'
+        - type: content
+          pattern: 'This error was generated by Mod.?Security'
+        - type: content
+          pattern: 'rules of the mod.security.module'
+        - type: content
+          pattern: 'mod.security.rules triggered'
+        - type: content
+          pattern: 'Protected by Mod.?Security'
+        - type: content
+          pattern: '/modsecurity[\-_]errorpage/'
+        - type: content
+          pattern: 'modsecurity iis'
+    - logic: all
+      conditions:
+        - type: reason
+          pattern: 'ModSecurity Action'
+        - type: status
+          status: 403
+    - logic: all
+      conditions:
+        - type: reason
+          pattern: 'ModSecurity Action'
+        - type: status
+          status: 406
+- name: 'NAXSI (NBS Systems)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'x-data-origin'
+          pattern: '^naxsi(.+)?'
+        - type: header
+          key: 'server'
+          pattern: 'naxsi(.+)?'
+        - type: content
+          pattern: 'blocked by naxsi'
+        - type: content
+          pattern: 'naxsi blocked information'
+- name: 'Nemesida (PentestIt)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: '@?nemesida(\-security)?\.com'
+        - type: content
+          pattern: 'Suspicious activity detected.{0,10}?Access to the site is blocked'
+        - type: content
+          pattern: 'nwaf@'
+        - type: status
+          status: 222
+- name: 'NetContinuum (Barracuda Networks)'
+  rule:
+    - logic: any
+      conditions:
+        - type: cookie
+          pattern: '^NCI__SessionId='
+- name: 'NetScaler AppFirewall (Citrix Systems)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'via'
+          pattern: 'NS\-CACHE'
+        - type: cookie
+          pattern: '^(ns_af=|citrix_ns_id|NSC_)'
+        - type: content
+          pattern: '(NS Transaction|AppFW Session) id'
+        - type: content
+          pattern: 'Violation Category.{0,5}?APPFW_'
+        - type: content
+          pattern: 'Citrix\|NetScaler'
+        - type: header
+          key: 'cneonction'
+          pattern: '^(keep alive|close)'
+        - type: header
+          key: 'nncoection'
+          pattern: '^(keep alive|close)'
+- name: 'NevisProxy (AdNovum)'
+  rule:
+    - logic: any
+      conditions:
+        - type: cookie
+          pattern: '^Navajo'
+        - type: cookie
+          pattern: '^NP_ID'
+- name: 'Newdefend (NewDefend)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'Newdefend'
+        - type: content
+          pattern: 'www\.newdefend\.com/feedback'
+        - type: content
+          pattern: '/nd\-block/'
+- name: 'NexusGuard Firewall (NexusGuard)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'Powered by Nexusguard'
+        - type: content
+          pattern: 'nexusguard\.com/wafpage/.+#\d{3};'
+- name: 'NinjaFirewall (NinTechNet)'
+  rule:
+    - logic: all
+      conditions:
+        - type: content
+          pattern: '<title>NinjaFirewall.{0,10}?\d{3}.forbidden'
+        - type: content
+          pattern: 'For security reasons?.{0,10}?it was blocked and logged'
+- name: 'NullDDoS Protection (NullDDoS)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'NullDDoS(.System)?'
+- name: 'OnMessage Shield (BlackBaud)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'x-engine'
+          pattern: 'onMessage Shield'
+        - type: content
+          pattern: 'Blackbaud K\-12 conducts routine maintenance'
+        - type: content
+          pattern: 'onMessage SHEILD'
+        - type: content
+          pattern: 'maintenance\.blackbaud\.com'
+        - type: content
+          pattern: 'status\.blackbaud\.com'
+- name: 'Open-Resty Lua Nginx (FLOSS)'
+  rule:
+    - logic: all
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: '^openresty/[0-9\.]+?'
+        - type: status
+          status: 403
+    - logic: all
+      conditions:
+        - type: content
+          pattern: 'openresty/[0-9\.]+?'
+        - type: status
+          status: 406
+- name: 'Oracle Cloud (Oracle)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: '<title>fw_error_www'
+        - type: content
+          pattern: 'src=\"/oralogo_small\.gif\"'
+        - type: content
+          pattern: 'www\.oracleimg\.com/us/assets/metrics/ora_ocom\.js'
+- name: 'Palo Alto Next Gen Firewall (Palo Alto Networks)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'Download of virus.spyware blocked'
+        - type: content
+          pattern: 'Palo Alto Next Generation Security Platform'
+- name: 'PentaWAF (Global Network Services)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'PentaWaf(/[0-9\.]+)?'
+        - type: content
+          pattern: 'Penta.?Waf/[0-9\.]+?.server'
+- name: 'PerimeterX (PerimeterX)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'www\.perimeterx\.(com|net)/whywasiblocked'
+        - type: content
+          pattern: 'client\.perimeterx\.(net|com)'
+        - type: content
+          pattern: 'denied because we believe you are using automation tools'
+- name: 'pkSecurity IDS (pkSec)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'As this could be a potential hack attack'
+        - type: content
+          pattern: 'A safety critical (call|request) was (detected|discovered) and blocked'
+        - type: content
+          pattern: 'maximum number of reloads per minute and prevented access'
+    - logic: all
+      conditions:
+        - type: content
+          pattern: 'pk.?Security.?Module'
+        - type: content
+          pattern: 'Security.Alert'
+- name: 'PowerCDN (PowerCDN)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'via'
+          pattern: '(.*)?powercdn.com(.*)?'
+        - type: header
+          key: 'x-cache'
+          pattern: '(.*)?powercdn.com(.*)?'
+        - type: header
+          key: 'x-cdn'
+          pattern: 'PowerCDN'
+- name: 'Profense (ArmorLogic)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'Profense'
+        - type: cookie
+          pattern: '^PLBSID='
+- name: 'PT Application Firewall (Positive Technologies)'
+  rule:
+    - logic: all
+      conditions:
+        - type: content
+          pattern: '<h1.{0,10}?Forbidden'
+        - type: content
+          pattern: '<pre>Request.ID:.{0,10}?\d{4}\-(\d{2})+.{0,35}?pre>'
+- name: 'Puhui (Puhui)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'Puhui[\-_]?WAF'
+- name: 'Qcloud (Tencent Cloud)'
+  rule:
+    - logic: all
+      conditions:
+        - type: content
+          pattern: '腾讯云Web应用防火墙'
+        - type: status
+          status: 403
+- name: 'Qiniu (Qiniu CDN)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'x-qiniu-cdn'
+          pattern: '\d+?'
+- name: 'Qrator (Qrator)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'QRATOR'
+- name: 'AppWall (Radware)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'CloudWebSec\.radware\.com'
+        - type: header
+          key: 'x-sl-compstate'
+          pattern: '.+'
+    - logic: all
+      conditions:
+        - type: content
+          pattern: 'because we have detected unauthorized activity'
+        - type: content
+          pattern: '<title>Unauthorized Request Blocked'
+        - type: content
+          pattern: 'if you believe that there has been some mistake'
+        - type: content
+          pattern: '\?Subject=Security Page.{0,10}?Case Number'
+- name: 'Reblaze (Reblaze)'
+  rule:
+    - logic: any
+      conditions:
+        - type: cookie
+          pattern: '^rbzid'
+        - type: header
+          key: 'server'
+          pattern: 'Reblaze Secure Web Gateway'
+    - logic: all
+      conditions:
+        - type: content
+          pattern: 'current session has been terminated'
+        - type: content
+          pattern: 'do not hesitate to contact us'
+        - type: content
+          pattern: 'access denied \(\d{3}\)'
+- name: 'RSFirewall (RSJoomla!)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'com_rsfirewall_(\d{3}_forbidden|event)?'
+- name: 'RequestValidationMode (Microsoft)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'Request Validation has detected a potentially dangerous client input'
+        - type: content
+          pattern: 'ASP\.NET has detected data in the request'
+        - type: content
+          pattern: 'HttpRequestValidationException'
+- name: 'Sabre Firewall (Sabre)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'dxsupport\.sabre\.com'
+    - logic: all
+      conditions:
+        - type: content
+          pattern: '<title>Application Firewall Error'
+        - type: content
+          pattern: 'add some important details to the email for us to investigate'
+- name: 'Safe3 Web Firewall (Safe3)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'Safe3 Web Firewall'
+        - type: header
+          key: 'x-powered-by'
+          pattern: 'Safe3WAF/[\.0-9]+?'
+        - type: content
+          pattern: 'Safe3waf/[0-9\.]+?'
+- name: 'Safedog (SafeDog)'
+  rule:
+    - logic: any
+      conditions:
+        - type: cookie
+          pattern: '^safedog\-flow\-item='
+        - type: header
+          key: 'server'
+          pattern: 'Safedog'
+        - type: content
+          pattern: 'safedogsite/broswer_logo\.jpg'
+        - type: content
+          pattern: '404\.safedog\.cn/sitedog_stat.html'
+        - type: content
+          pattern: '404\.safedog\.cn/images/safedogsite/head\.png'
+- name: 'Safeline (Chaitin Tech.)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'safeline|<!\-\-\sevent id:'
+- name: 'SecKing (SecKing)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'secking(.?waf)?'
+- name: 'SecuPress WP Security (SecuPress)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: '<(title|h\d{1})>SecuPress'
+- name: 'Secure Entry (United Security Providers)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'Secure Entry Server'
+- name: 'eEye SecureIIS (BeyondTrust)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'SecureIIS is an internet security application'
+        - type: content
+          pattern: 'Download SecureIIS Personal Edition'
+        - type: content
+          pattern: 'https?://www\.eeye\.com/Secure\-?IIS'
+- name: 'SecureSphere (Imperva Inc.)'
+  rule:
+    - logic: all
+      conditions:
+        - type: content
+          pattern: '<(title|h2)>Error'
+        - type: content
+          pattern: 'The incident ID is'
+        - type: content
+          pattern: 'This page can''t be displayed'
+        - type: content
+          pattern: 'Contact support for additional information'
+- name: 'SEnginx (Neusoft)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'SENGINX\-ROBOT\-MITIGATION'
+- name: 'ServerDefender VP (Port80 Software)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'x-pint'
+          pattern: 'p(ort\-)?80'
+- name: 'Shadow Daemon (Zecure)'
+  rule:
+    - logic: all
+      conditions:
+        - type: content
+          pattern: '<h\d{1}>\d{3}.forbidden<.h\d{1}>'
+        - type: content
+          pattern: 'request forbidden by administrative rules'
+- name: 'Shieldon Firewall (Shieldon.io)'
+  rule:
+    - logic: all
+      conditions:
+        - type: content
+          pattern: 'Please solve CAPTCHA'
+        - type: content
+          pattern: 'shieldon_captcha'
+        - type: content
+          pattern: 'Unusual behavior detected'
+        - type: content
+          pattern: 'status-user-info'
+    - logic: all
+      conditions:
+        - type: content
+          pattern: 'Access denied'
+        - type: content
+          pattern: 'The IP address you are using has been blocked.'
+        - type: content
+          pattern: 'status-user-info'
+    - logic: all
+      conditions:
+        - type: content
+          pattern: 'Please line up'
+        - type: content
+          pattern: 'This page is limiting the number of people online. Please wait a moment.'
+    - logic: any
+      conditions:
+        - type: header
+          key: '[xx]-[pp]rotected-[bb]y'
+          pattern: 'shieldon.io'
+- name: 'Shield Security (One Dollar Plugin)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'You were blocked by the Shield'
+        - type: content
+          pattern: 'remaining transgression\(s\) against this site'
+        - type: content
+          pattern: 'Something in the URL.{0,5}?Form or Cookie data wasn\''t appropriate'
+- name: 'SiteGround (SiteGround)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'Our system thinks you might be a robot!'
+        - type: content
+          pattern: 'access is restricted due to a security rule'
+- name: 'SiteGuard (Sakura Inc.)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'Powered by SiteGuard'
+        - type: content
+          pattern: 'The server refuse to browse the page'
+- name: 'Sitelock (TrueShield)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'SiteLock will remember you'
+        - type: content
+          pattern: 'Sitelock is leader in Business Website Security Services'
+        - type: content
+          pattern: 'sitelock[_\-]shield([_\-]logo|[\-_]badge)?'
+        - type: content
+          pattern: 'SiteLock incident ID'
+- name: 'SonicWall (Dell)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'SonicWALL'
+        - type: content
+          pattern: '<(title|h\d{1})>Web Site Blocked'
+        - type: content
+          pattern: '\+?nsa_banner'
+- name: 'UTM Web Protection (Sophos)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'www\.sophos\.com'
+        - type: content
+          pattern: 'Powered by.?(Sophos)? UTM Web Protection'
+    - logic: all
+      conditions:
+        - type: content
+          pattern: '<title>Access to the requested URL was blocked'
+        - type: content
+          pattern: 'Access to the requested URL was blocked'
+        - type: content
+          pattern: 'incident was logged with the following log identifier'
+        - type: content
+          pattern: 'Inbound Anomaly Score exceeded'
+        - type: content
+          pattern: 'Your cache administrator is'
+- name: 'Squarespace (Squarespace)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'Squarespace'
+        - type: cookie
+          pattern: '^SS_ANALYTICS_ID='
+        - type: cookie
+          pattern: '^SS_MATTR='
+        - type: cookie
+          pattern: '^SS_MID='
+        - type: cookie
+          pattern: 'SS_CVT='
+        - type: content
+          pattern: 'status\.squarespace\.com'
+        - type: content
+          pattern: 'BRICK\-\d{2}'
+- name: 'SquidProxy IDS (SquidProxy)'
+  rule:
+    - logic: all
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'squid(/[0-9\.]+)?'
+        - type: content
+          pattern: 'Access control configuration prevents your request'
+- name: 'StackPath (StackPath)'
+  rule:
+    - logic: all
+      conditions:
+        - type: content
+          pattern: 'This website is using a security service to protect itself'
+        - type: content
+          pattern: 'You performed an action that triggered the service and blocked your request'
+- name: 'Sucuri CloudProxy (Sucuri Inc.)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'x-sucuri-id'
+          pattern: '.+?'
+        - type: header
+          key: 'x-sucuri-cache'
+          pattern: '.+?'
+        - type: header
+          key: 'server'
+          pattern: 'Sucuri(\-Cloudproxy)?'
+        - type: header
+          key: 'x-sucuri-block'
+          pattern: '.+?'
+        - type: content
+          pattern: 'Access Denied.{0,6}?Sucuri Website Firewall'
+        - type: content
+          pattern: '<title>Sucuri WebSite Firewall.{0,6}?(CloudProxy)?.{0,6}?Access Denied'
+        - type: content
+          pattern: 'sucuri\.net/privacy\-policy'
+        - type: content
+          pattern: 'cdn\.sucuri\.net/sucuri[-_]firewall[-_]block\.css'
+        - type: content
+          pattern: 'cloudproxy@sucuri\.net'
+- name: 'Tencent Cloud Firewall (Tencent Technologies)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'waf\.tencent\-?cloud\.com/'
+- name: 'Teros (Citrix Systems)'
+  rule:
+    - logic: any
+      conditions:
+        - type: cookie
+          pattern: '^st8id='
+- name: 'TransIP Web Firewall (TransIP)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'x-transip-backend'
+          pattern: '.+'
+        - type: header
+          key: 'x-transip-balancer'
+          pattern: '.+'
+- name: 'UEWaf (UCloud)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'uewaf(/[0-9\.]+)?'
+        - type: content
+          pattern: '/uewaf_deny_pages/default/img/'
+        - type: content
+          pattern: 'ucloud\.cn'
+- name: 'URLMaster SecurityCheck (iFinity/DotNetNuke)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'x-urlmaster-debug'
+          pattern: '.+'
+        - type: header
+          key: 'x-urlmaster-ex'
+          pattern: '.+'
+    - logic: all
+      conditions:
+        - type: content
+          pattern: 'Ur[li]RewriteModule'
+        - type: content
+          pattern: 'SecurityCheck'
+- name: 'URLScan (Microsoft)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'Rejected[-_]By[_-]UrlScan'
+        - type: content
+          pattern: 'A custom filter or module.{0,4}?such as URLScan'
+- name: 'Varnish (OWASP)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'Request rejected by xVarnish\-WAF'
+- name: 'Viettel (Cloudrity)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'Access Denied.{0,10}?Viettel WAF'
+        - type: content
+          pattern: 'cloudrity\.com\.(vn)?/'
+        - type: content
+          pattern: 'Viettel WAF System'
+- name: 'VirusDie (VirusDie LLC)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'cdn\.virusdie\.ru/splash/firewallstop\.png'
+        - type: content
+          pattern: 'copy.{0,10}?Virusdie\.ru'
+- name: 'Wallarm (Wallarm Inc.)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'nginx[\-_]wallarm'
+- name: 'WatchGuard (WatchGuard Technologies)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'WatchGuard'
+        - type: content
+          pattern: 'Request denied by WatchGuard Firewall'
+        - type: content
+          pattern: 'WatchGuard Technologies Inc\.'
+- name: 'WebARX (WebARX Security Solutions)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'WebARX.{0,10}?Web Application Firewall'
+        - type: content
+          pattern: 'www\.webarxsecurity\.com'
+        - type: content
+          pattern: '/wp\-content/plugins/webarx/includes/'
+- name: 'WebKnight (AQTRONIX)'
+  rule:
+    - logic: all
+      conditions:
+        - type: status
+          status: 999
+        - type: reason
+          pattern: 'No Hacking'
+    - logic: all
+      conditions:
+        - type: status
+          status: 404
+        - type: reason
+          pattern: 'Hack Not Found'
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'WebKnight Application Firewall Alert'
+        - type: content
+          pattern: 'What is webknight\?'
+        - type: content
+          pattern: 'AQTRONIX WebKnight is an application firewall'
+        - type: content
+          pattern: 'WebKnight will take over and protect'
+        - type: content
+          pattern: 'aqtronix\.com/WebKnight'
+        - type: content
+          pattern: 'AQTRONIX.{0,10}?WebKnight'
+- name: 'WebLand (WebLand)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'protected by webland'
+- name: 'RayWAF (WebRay Solutions)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'WebRay\-WAF'
+        - type: header
+          key: 'drivedby'
+          pattern: 'RaySrv.RayEng/[0-9\.]+?'
+- name: 'WebSEAL (IBM)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'WebSEAL'
+        - type: content
+          pattern: 'This is a WebSEAL error message template file'
+        - type: content
+          pattern: 'WebSEAL server received an invalid HTTP request'
+- name: 'WebTotem (WebTotem)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'The current request was blocked.{0,8}?>WebTotem'
+- name: 'West263 CDN (West263CDN)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'x-cache'
+          pattern: 'WS?T263CDN'
+- name: 'Wordfence (Defiant)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'wf[_\-]?WAF'
+        - type: content
+          pattern: 'Generated by Wordfence'
+        - type: content
+          pattern: 'broke one of (the )?Wordfence (advanced )?blocking rules'
+        - type: content
+          pattern: '/plugins/wordfence'
+- name: 'wpmudev WAF (Incsub)'
+  rule:
+    - logic: all
+      conditions:
+        - type: content
+          pattern: 'href="http(s)?.\/\/wpmudev.com\/.{0,15}?'
+        - type: content
+          pattern: 'Click on the Logs tab, then the WAF Log.'
+        - type: content
+          pattern: 'Choose your site from the list'
+        - type: status
+          status: 403
+    - logic: all
+      conditions:
+        - type: content
+          pattern: '<h1>Whoops, this request has been blocked!'
+        - type: content
+          pattern: 'This request has been deemed suspicious'
+        - type: content
+          pattern: 'possible attack on our servers.'
+        - type: status
+          status: 403
+- name: 'WTS-WAF (WTS)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'wts/[0-9\.]+?'
+        - type: content
+          pattern: '<(title|h\d{1})>WTS\-WAF'
+- name: '360WangZhanBao (360 Technologies)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'qianxin\-waf'
+        - type: header
+          key: 'wzws-ray'
+          pattern: '.+?'
+        - type: header
+          key: 'x-powered-by-360wzb'
+          pattern: '.+?'
+        - type: content
+          pattern: 'wzws\-waf\-cgi/'
+        - type: content
+          pattern: 'wangshan\.360\.cn'
+        - type: status
+          status: 493
+- name: 'XLabs Security WAF (XLabs)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'x-cdn'
+          pattern: 'XLabs Security'
+        - type: header
+          key: 'secured'
+          pattern: '^By XLabs Security'
+        - type: header
+          key: 'server'
+          pattern: 'XLabs[-_]?.?WAF'
+- name: 'Xuanwudun (Xuanwudun)'
+  rule:
+    - logic: any
+      conditions:
+        - type: content
+          pattern: 'admin\.dbappwaf\.cn/(index\.php/Admin/ClientMisinform/)?'
+        - type: content
+          pattern: 'class=.(db[\-_]?)?waf(.)?([\-_]?row)?>'
+- name: 'Yundun (Yundun)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'YUNDUN'
+        - type: header
+          key: 'x-cache'
+          pattern: 'YUNDUN'
+        - type: cookie
+          pattern: '^yd_cookie='
+        - type: content
+          pattern: 'Blocked by YUNDUN Cloud WAF'
+        - type: content
+          pattern: 'yundun\.com/yd[-_]http[_-]error/'
+        - type: content
+          pattern: 'www\.yundun\.com/(static/js/fingerprint\d{1}?\.js)?'
+- name: 'Yunsuo (Yunsuo)'
+  rule:
+    - logic: any
+      conditions:
+        - type: cookie
+          pattern: '^yunsuo_session='
+        - type: content
+          pattern: 'class=\"yunsuologo\"'
+- name: 'YXLink (YxLink Technologies)'
+  rule:
+    - logic: any
+      conditions:
+        - type: cookie
+          pattern: '^yx_ci_session='
+        - type: cookie
+          pattern: '^yx_language='
+        - type: header
+          key: 'server'
+          pattern: 'Yxlink([\-_]?WAF)?'
+- name: 'Zenedge (Zenedge)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'ZENEDGE'
+        - type: header
+          key: 'x-zen-fury'
+          pattern: '.+?'
+        - type: content
+          pattern: '/__zenedge/'
+- name: 'ZScaler (Accenture)'
+  rule:
+    - logic: any
+      conditions:
+        - type: header
+          key: 'server'
+          pattern: 'ZScaler'
+        - type: content
+          pattern: 'Access Denied.{0,10}?Accenture Policy'
+        - type: content
+          pattern: 'policies\.accenture\.com'
+        - type: content
+          pattern: 'login\.zscloud\.net/img_logo_new1\.png'
+        - type: content
+          pattern: 'Zscaler to protect you from internet threats'
+        - type: content
+          pattern: 'Internet Security by ZScaler'
+        - type: content
+          pattern: 'Accenture.{0,10}?webfilters indicate that the site likely contains'

@@ -1,0 +1,12 @@
+# @name: template
+# @color: blue (cyan、blue、green、amber、orange、gold、pink、purple、violet、lavender、red、rose、teal、yellow、white、ice)
+# @validate: baseline_similarity
+# @threshold: 0.90
+# @tags: Write Disposition Here,ex:chunked编码分割payload，每2字符一个chunk，绕过关键词匹配
+# @intent: none
+POST / HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+Content-Type: application/x-www-form-urlencoded
+
+something

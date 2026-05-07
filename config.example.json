@@ -1,0 +1,103 @@
+{
+  "fofa": {
+    "email": "your-fofa-email@example.com",
+    "api_key": "replace-with-your-fofa-key",
+    "base_url": "https://fofa.info",
+    "query": "waf",
+    "size": 2000,
+    "default_page": 1,
+    "fields": [
+      "host",
+      "ip",
+      "title",
+      "domain",
+      "port",
+      "protocol",
+      "server",
+      "product",
+      "header",
+      "country_name",
+      "city",
+      "lastupdatetime"
+    ]
+  },
+  "app": {
+    "config_path": "config.json",
+    "database_path": "data/wafkiller.db.json",
+    "window_title": "WAF Killer"
+  },
+  "tester": {
+    "timeout_seconds": 15,
+    "concurrency": 100,
+    "snapshot_concurrency": 20,
+    "verify_tls": true,
+    "default_scheme": "https",
+    "block_status_codes": [
+      403,
+      406,
+      412,
+      429,
+      493,
+      503
+    ],
+    "block_keywords": [
+      "access denied",
+      "forbidden",
+      "blocked",
+      "waf",
+      "firewall",
+      "suspicious request"
+    ],
+    "max_body_preview": 4096
+  },
+  "plugin": {
+    "dir": "plugins"
+  },
+  "llm_provider": "openai",
+  "openai": {
+    "enabled": true,
+    "api_key": "replace-with-your-openai-key",
+    "base_url": "https://api.openai.com/v1",
+    "proxy_url": "",
+    "model": "gpt-5.4",
+    "reasoning_effort": "low",
+    "timeout_seconds": 90
+  },
+  "zhipu": {
+    "enabled": false,
+    "api_key": "replace-with-your-zhipu-key",
+    "base_url": "https://open.bigmodel.cn/api/paas/v4",
+    "proxy_url": "",
+    "model": "glm-5.1",
+    "reasoning_effort": "low",
+    "timeout_seconds": 90
+  },
+  "waf_signatures": [
+    {
+      "name": "Cloudflare",
+      "keywords": [
+        "cloudflare",
+        "__cf_bm",
+        "cf-ray"
+      ]
+    },
+    {
+      "name": "Akamai",
+      "keywords": [
+        "akamai",
+        "akamaighost"
+      ]
+    },
+    {
+      "name": "ModSecurity",
+      "keywords": [
+        "mod_security",
+        "modsecurity"
+      ]
+    }
+  ],
+  "variables": {
+    "PAYLOAD": "' or 1=1 --",
+    "USER_AGENT": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36"
+  }
+}

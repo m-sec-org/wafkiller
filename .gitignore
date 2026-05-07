@@ -1,0 +1,6 @@
+.gocache/
+.gomodcache/
+bin/
+dist/
+config.json
+/assets/
