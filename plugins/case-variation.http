@@ -1,0 +1,13 @@
+# @name: 关键字大小写混淆
+# @tags: get,sqli,case,keyword,id,bypass
+# @color: green
+# @validate: baseline_similarity
+# @threshold: 0.90
+# @intent: keyword_case_variation
+# @intent.param: id
+# @intent.payload: id=1'+AnD+'a'='a
+# @note: 大小写混淆 AnD/SeLeCt/UnIoN 绕过大小写敏感的关键字黑名单（SQLMap randomcase 思路，适用于多数自研/开源 WAF）。payload: id=1' and 'a'='a
+GET /?id=1'+AnD+'a'='a HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+

